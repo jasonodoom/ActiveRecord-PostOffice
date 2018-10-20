@@ -1,5 +1,7 @@
 require_relative '../config/environment'
 
+$RAND_ASSIGN = PostOffice.all.sample.name
+
 def set_sex(sex)
   if sex.downcase == "m"
     delivery_person = "Delivery Man"
@@ -13,6 +15,7 @@ end
 
 def get_assignment
   DeliveryPerson.assignment
+  DeliveryPerson.find_recipients()
 end
 
 def configure
@@ -29,8 +32,8 @@ def configure
   puts "Hello #{postal_worker_name.split[0]}!"
   puts "You're postal worker number: #{DeliveryPerson.get_id(postal_worker_name)}"
 
-  rand_assign = PostOffice.all.sample.name
-  rand_assign_id = PostOffice.find_by(name: rand_assign).id
+  # rand_assign = PostOffice.all.sample.name
+  rand_assign_id = PostOffice.find_by(name: $RAND_ASSIGN).id
 
   DeliveryPerson.find do |person|
     if  postal_worker_name == person.name
@@ -45,7 +48,8 @@ def configure
   puts "Please be sure to deliver mail only if the recipient is available!"
 
   puts ""
-  get_assignment
+  DeliveryPerson.assignment($RAND_ASSIGN)
+
 end
 
 def reset
