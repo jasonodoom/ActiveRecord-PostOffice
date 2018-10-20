@@ -1,3 +1,5 @@
+require_relative '../config/environment'
+
 def set_sex(sex)
   if sex.downcase == "m"
     delivery_person = "Delivery Man"
@@ -11,7 +13,7 @@ end
 def configure
   puts "Please enter your name: "
   username = gets.chomp
-  DeliveryPerson.create(name: username)
+  postal_worker = DeliveryPerson.create(name: username)
 
   puts "Male or Female? [M/F]"
   sex = gets.chomp
