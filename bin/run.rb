@@ -15,7 +15,6 @@ end
 
 def get_assignment
   DeliveryPerson.assignment
-  DeliveryPerson.find_recipients()
 end
 
 def configure
@@ -48,7 +47,8 @@ def configure
   puts "Please be sure to deliver mail only if the recipient is available!"
 
   puts ""
-  DeliveryPerson.assignment($RAND_ASSIGN)
+  rand_assign = $RAND_ASSIGN
+  DeliveryPerson.assignment(rand_assign)
 
 end
 
