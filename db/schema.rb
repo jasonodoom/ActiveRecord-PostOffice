@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20181020012623) do
 
-  create_table "delivery_persons", force: :cascade do |t|
+  create_table "delivery_people", force: :cascade do |t|
     t.integer "post_office_id"
     t.integer "recipient_id"
     t.string  "name"
