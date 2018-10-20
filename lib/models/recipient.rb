@@ -11,6 +11,15 @@ def self.assign_random_post_office
         end
 end
 
+def self.receive_delivery(recipient)
+  Recipient.all.find do |recipient|
+    self == receiver.name
+    name_of_worker = DeliveryPerson.get_name(delivery_person_id)
+    puts "Thanks for the delivery #{name_of_worker}!"
+   end
+end
+
+
 
 
 

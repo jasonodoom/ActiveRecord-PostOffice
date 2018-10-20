@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 20181020012623) do
     t.integer "delivery_person_id"
     t.integer "post_office_id"
     t.string  "name"
-    t.boolean "available",          default: false
+    t.integer "deliveries_received"
+    t.boolean "available",           default: false
   end
 
 end

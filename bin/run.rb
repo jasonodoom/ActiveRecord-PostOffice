@@ -26,12 +26,12 @@ def configure
   sex = gets.chomp
   get_sex = set_sex(sex)
 
+  puts `clear` # clears the screen
   puts ""
 
   puts "Hello #{postal_worker_name.split[0]}!"
   puts "You're postal worker number: #{DeliveryPerson.get_id(postal_worker_name)}"
 
-  # rand_assign = PostOffice.all.sample.name
   rand_assign_id = PostOffice.find_by(name: $RAND_ASSIGN).id
 
   DeliveryPerson.find do |person|
@@ -45,6 +45,7 @@ def configure
 
   puts "Today is your first day at the job as a #{get_sex}"
   puts "Please be sure to deliver mail only if the recipient is available!"
+
 
   puts ""
   rand_assign = $RAND_ASSIGN
