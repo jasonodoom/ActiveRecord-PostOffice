@@ -4,7 +4,6 @@ class CreateRecipients < ActiveRecord::Migration[5.0]
       t.integer  :delivery_person_id
       t.integer  :post_office_id
       t.string   :name
-      t.string   :delivery_address
       t.boolean  :available, default: false
     end
   end
