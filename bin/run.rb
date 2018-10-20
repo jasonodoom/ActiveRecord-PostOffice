@@ -6,25 +6,79 @@ def set_sex(sex)
   elsif sex.downcase == "f"
     delivery_person = "Delivery Woman"
   else
-    puts "I can't let you do that #{username.split[0]}"
+    puts "I can't let you do that #{postal_worker_name.split[0]}"
+    DeliveryPerson.all.last.delete
   end
+end
+
+def get_assignment
+  DeliveryPerson.assignment
 end
 
 def configure
   puts "Please enter your name: "
-  username = gets.chomp
-  postal_worker = DeliveryPerson.create(name: username)
+  postal_worker_name = gets.chomp
+  DeliveryPerson.create(name: postal_worker_name)
 
   puts "Male or Female? [M/F]"
   sex = gets.chomp
   get_sex = set_sex(sex)
 
-  puts `clear` # clears the screen
-
-  puts "Hello #{username.split[0]}!"
   puts ""
+
+  puts "Hello #{postal_worker_name.split[0]}!"
+  puts "You're postal worker number: #{DeliveryPerson.get_id(postal_worker_name)}"
+
+  rand_assign = PostOffice.all.sample.name
+  rand_assign_id = PostOffice.find_by(name: rand_assign).id
+
+  DeliveryPerson.find do |person|
+    if  postal_worker_name == person.name
+      person.post_office_id = rand_assign_id
+      person.save
+    end
+  end
+
+  puts ""
+
   puts "Today is your first day at the job as a #{get_sex}"
   puts "Please be sure to deliver mail only if the recipient is available!"
+
+  puts ""
+  get_assignment
+end
+
+def reset
+  DeliveryPerson.all.delete_all
+end
+
+def menu
+
+puts " Menu:
+      1) RESET
+      2) PLAY GAME
+      3) QUIT
+      "
+
+ puts "Please choose a menu option(1 2 3)"
+ user_input = gets.chomp
+  if user_input == "1" || user_input.downcase == "one"
+     puts "You chose choice 1: RESET"
+     puts "Continue?[y/n]"
+     user_confirmation = gets.chomp
+      if user_confirmation.downcase == "y"
+          puts "Dropping all Delivery People from database....."
+          reset
+      else
+        menu
+      end
+  elsif user_input == "2"  || user_input.downcase == "two"
+    configure
+  elsif user_input == "3" || user_input.downcase == "three"
+    puts "Goodbye!"
+  else
+    puts "Invalid input\n" + "GOODBYE\n"
+  end
 end
 
 def loader
@@ -44,7 +98,16 @@ EOS
 puts art
 puts ""
 puts "Get ready to delivery some mail!"
-configure
+puts "continue?[y/n]"
+user_input = gets.chomp
+if user_input.downcase == "y"
+  configure
+elsif user_input.downcase == "n"
+  menu
+else
+  puts "Terminating...."
+end
+
 end
 
 puts loader
