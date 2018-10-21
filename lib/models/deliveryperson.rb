@@ -2,7 +2,6 @@ class DeliveryPerson < ActiveRecord::Base
   belongs_to :post_office
   belongs_to :recipient
 
-  $RAND_ASSIGN = PostOffice.all.sample.name # store randomg post office name in global var
   rand_assign = $RAND_ASSIGN
 
  def self.get_id(postal_worker_name)
