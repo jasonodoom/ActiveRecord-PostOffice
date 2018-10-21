@@ -1,6 +1,6 @@
 require_relative '../config/environment'
 
-$RAND_ASSIGN = PostOffice.all.sample.name
+$RAND_ASSIGN = PostOffice.all.sample.name # store randomg post office name in global var
 
 def set_sex(sex)
   if sex.downcase == "m"
@@ -8,8 +8,8 @@ def set_sex(sex)
   elsif sex.downcase == "f"
     delivery_person = "Delivery Woman"
   else
-    puts "I can't let you do that #{postal_worker_name.split[0]}"
     DeliveryPerson.all.last.delete
+    puts "I can't let you do that #{postal_worker_name.split[0]}"
   end
 end
 
@@ -55,6 +55,8 @@ end
 
 def reset
   DeliveryPerson.all.delete_all
+  Recipient.all.delete_all
+  PostOffice.all.delete_all
 end
 
 def menu
@@ -73,6 +75,8 @@ puts " Menu:
      user_confirmation = gets.chomp
       if user_confirmation.downcase == "y"
           puts "Dropping all Delivery People from database....."
+          puts "Dropping all Recipients from database....."
+          puts "Dropping all Post Offices from database....."
           reset
       else
         menu

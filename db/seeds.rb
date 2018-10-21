@@ -4,29 +4,31 @@ PostOffice.create(name: "Caroline Post Office")
 PostOffice.create(name: "Bloomington Post Office")
 PostOffice.create(name: "Newark Post Office")
 PostOffice.create(name: "Livingston Post Office")
-PostOffice.create(name: "Rhode Island Post Office")
-PostOffice.create(name: "Island Post Office")
-
-
+PostOffice.create(name: "Langaston Post Office")
+PostOffice.create(name: "Conneticut Post Office")
+PostOffice.create(name: "Hershire Post Office")
+PostOffice.create(name: "Davenport Post Office")
 
 Recipient.create(name: "Stuart", available: true)
-Recipient.create(name: "Jorge")
 Recipient.create(name: "Frankie")
 Recipient.create(name: "Sonnie", available: true)
 Recipient.create(name: "Grinch")
-Recipient.create(name: "Sandra")
-Recipient.create(name: "Kurt")
-Recipient.create(name: "Steven")
-Recipient.create(name: "Carlos")
+Recipient.create(name: "Sandra", post_office_id: 3)
 Recipient.create(name: "Henrietta")
-
-
+Recipient.create(name: "Oprah", available: true)
+Recipient.create(name: "Samantha", post_office_id: 7)
+Recipient.create(name: "Luis", post_office_id: 1)
+Recipient.create(name: "Renaldo", available: true)
+Recipient.create(name: "Gustavo", post_office_id: 6, available: true )
 
 DeliveryPerson.create(name: "Vincent", post_office_id: 2)
 DeliveryPerson.create(name: "Amy", post_office_id: 4)
 DeliveryPerson.create(name: "Luis", post_office_id: 1)
 DeliveryPerson.create(name: "Jane", post_office_id: 3)
-DeliveryPerson.create(name: "Scott", post_office_id: 5)
-
+DeliveryPerson.create(name: "Kiri", post_office_id: 5)
+DeliveryPerson.create(name: "Kenya", post_office_id: 9)
+DeliveryPerson.create(name: "Trevor", post_office_id: 1)
+DeliveryPerson.create(name: "Joshua", post_office_id: 12)
+DeliveryPerson.create(name: "Elizabeth", post_office_id: 7)
 
 # # rake db:seed
