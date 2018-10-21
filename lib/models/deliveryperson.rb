@@ -2,6 +2,7 @@ class DeliveryPerson < ActiveRecord::Base
   belongs_to :post_office
   belongs_to :recipient
 
+  $RAND_ASSIGN = PostOffice.all.sample.name # store randomg post office name in global var
   rand_assign = $RAND_ASSIGN
 
  def self.get_id(postal_worker_name)
@@ -17,8 +18,6 @@ class DeliveryPerson < ActiveRecord::Base
     options.sample
   end
 
-
-
  def self.redeliver(recipient)
    puts "You leave #{recipient}'s address and return to #{$RAND_ASSIGN} for #{DeliveryPerson.take_a_break}."
    puts "When you return an hour later..."
@@ -26,7 +25,11 @@ class DeliveryPerson < ActiveRecord::Base
    puts "...................................................."
    puts "..............................................."
    puts "........................................."
-   Recipient.change_avail(recipient)
+   Recipient.find do |recipient|
+     recipient == recipient.name
+     recipient.available = true
+     recipient.save
+   end
    puts "#{recipient} is home."
    Recipient.receive_delivery(recipient)
  end
@@ -64,27 +67,28 @@ def assign_delivery_person_id
 end
 
  def self.find_recipients(rand_assign)
-   postal_id = PostOffice.get_id(rand_assign) # get id of post office using randomly assigned name as arg
-    deliveries = Recipient.find(postal_id)["name"] # get name of recipients that we've deliveries for
-    recipient_id = Recipient.find_by(name: deliveries).id # get recipients id
-    DeliveryPerson.find do |delivery_person|
-      delivery_person.post_office_id == postal_id
-       delivery_person.recipient_id = recipient_id
-       delivery_person.save
+   postal_id = Recipient.all.sample.id
+   deliveries = Recipient.find(postal_id)["name"] # get name of recipients that we've deliveries for
+   Recipient.find  do |recipient|
+     DeliveryPerson.find do |delivery_person|
+     delivery_person.id == recipient.delivery_person_id
+      delivery_person.recipient_id = recipient.id
+      delivery_person.save
     end
-    Recipient.set_delivery_person
+   end
+   Recipient.set_delivery_person
    puts "You have deliveries for: #{deliveries}\n"
    recipient = deliveries
    DeliveryPerson.delivery(recipient)
  end
 
  def self.assignment(rand_assign)
-   Recipient.assign_random_post_office # assign random post office to recipients so worker can deliver
    puts "Assigning you to a post office...."
    puts "You've been assigned to: #{rand_assign}"
    puts ""
    puts ""
-   DeliveryPerson.find_recipients(rand_assign) # find recipient assigned to delivery person's post office
+   Recipient.assign_random_post_office # assign random post office to recipients so worker can deliver
+   DeliveryPerson.find_recipients(rand_assign)
   end
 
  end
