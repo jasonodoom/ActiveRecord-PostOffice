@@ -46,11 +46,9 @@ def configure
   puts "Today is your first day at the job as a #{get_sex}"
   puts "Please be sure to deliver mail only if the recipient is available!"
 
-
   puts ""
   rand_assign = $RAND_ASSIGN
   DeliveryPerson.assignment(rand_assign)
-
 end
 
 def reset
@@ -60,8 +58,7 @@ def reset
 end
 
 def menu
-
-puts " Menu:
+  puts " Menu:
       1) RESET
       2) PLAY GAME
       3) QUIT
@@ -103,18 +100,18 @@ def loader
      (  _ \/  \/ ___(_  _)   /  (  __(  __(  / __(  __)
       ) __(  O \___ \ )(    (  O ) _) ) _) )( (__ ) _)
      (__)  \__/(____/(__)    \__(__) (__) (__\___(____)
-EOS
-puts art
-puts ""
-puts "Get ready to delivery some mail!"
-puts "continue?[y/n]"
-user_input = gets.chomp
-if user_input.downcase == "y"
-  configure
-elsif user_input.downcase == "n"
-  menu
-else
-  puts "Terminating...."
+  EOS
+  puts art
+  puts ""
+  puts "Get ready to delivery some mail!"
+  puts "continue?[y/n]"
+  user_input = gets.chomp
+  if user_input.downcase == "y"
+    configure
+  elsif user_input.downcase == "n"
+    menu
+  else
+    puts "Terminating...."
 end
 
 end
