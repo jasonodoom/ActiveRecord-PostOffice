@@ -1,6 +1,7 @@
 require_relative '../config/environment'
 
-$RAND_ASSIGN = PostOffice.all.sample.name # store randomg post office name in global var
+ $RAND_ASSIGN = PostOffice.all.sample.name # store randomg post office name in global var
+ rand_assign =  $RAND_ASSIGN
 
 def set_sex(sex)
   if sex.downcase == "m"
@@ -43,6 +44,7 @@ def configure
 
   puts ""
 
+
   puts "Today is your first day at the job as a #{get_sex}"
   puts "Please be sure to deliver mail only if the recipient is available!"
 
@@ -52,9 +54,9 @@ def configure
 end
 
 def reset
-  DeliveryPerson.all.delete_all
-  Recipient.all.delete_all
-  PostOffice.all.delete_all
+  DeliveryPerson.delete_all
+  Recipient.delete_all
+  PostOffice.delete_all
 end
 
 def menu

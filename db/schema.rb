@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181020012623) do
+ActiveRecord::Schema.define(version: 20181021164526) do
 
   create_table "delivery_people", force: :cascade do |t|
     t.integer "post_office_id"
