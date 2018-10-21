@@ -19,8 +19,7 @@ ActiveRecord::Schema.define(version: 20181020012623) do
   end
 
   create_table "post_offices", force: :cascade do |t|
-    t.integer "post_office_id"
-    t.string  "name"
+    t.string "name"
   end
 
   create_table "recipients", force: :cascade do |t|
