@@ -13,7 +13,7 @@ class DeliveryPerson < ActiveRecord::Base
  end
 
   def self.take_a_break
-    options = ["  a break", "relaxation", "breakfast", "dinner", " a nap"]
+    options = ["a break", "relaxation", "breakfast", "dinner", " a nap"]
     options.sample
   end
 
@@ -27,6 +27,7 @@ class DeliveryPerson < ActiveRecord::Base
    Recipient.all.find do |recipient|
      recipient == recipient.name
      recipient.available = true
+     recipient.save
    end
    puts "#{recipient} is home."
    Recipient.receive_delivery(recipient)

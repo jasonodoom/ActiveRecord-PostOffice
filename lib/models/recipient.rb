@@ -43,18 +43,15 @@ end
 
 def self.receive_delivery(recipient)
   name = recipient
+  delivery_person = Array.new
   Recipient.all.find do |recipient|
-    self == recipient.name
     name_of_worker = DeliveryPerson.get_name(recipient.delivery_person_id)
     puts ""
-   puts "Thanks for the delivery #{name_of_worker}!"
+    delivery_person << name_of_worker 
    end
+   puts "Thanks for the delivery #{delivery_person.join}!"
    Recipient.package_count(name)
 end
-
-
-
-
 
 
 end

@@ -22,7 +22,7 @@ def configure
   postal_worker_name = gets.chomp
   DeliveryPerson.create(name: postal_worker_name)
 
-  puts "Male or Female? [M/F]"
+  puts "Male or Female? [m/f]"
   sex = gets.chomp
   get_sex = set_sex(sex)
 
@@ -119,4 +119,4 @@ end
 
 end
 
-puts loader
+loader
